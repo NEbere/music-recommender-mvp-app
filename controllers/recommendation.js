@@ -33,7 +33,7 @@ const getUserRecommendations = async (ctx, next) => {
         playLists.push(...followers[index].playList)
     }
     const playListTags = getPlayListTags(playLists)
-    const music = await models.Music.findAll({
+    const recommendation = await models.Music.findAll({
         where: { tags: {
             [Op.overlap]: playListTags 
         }},
@@ -41,7 +41,7 @@ const getUserRecommendations = async (ctx, next) => {
     })
 
     ctx.status = 200
-    ctx.body = { user: user, playLists: playLists, tags: playListTags, music: music }
+    ctx.body = { recommendation: recommendation }
 
 }
 
