@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server.js"
+    "start": "nodemon ./server.js",
+    "createDB": "node_modules/.bin/sequelize db:create",
+    "migrate": "node_modules/.bin/sequelize db:migrate",
+    "seedDB": "node_modules/.bin/sequelize db:seed:all",
+    "undoDBSeed": "node_modules/.bin/sequelize db:seed:undo:all"
   },
   "keywords": [],
   "author": "Happiness Nwosu",
