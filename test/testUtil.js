@@ -1,9 +1,10 @@
+// Third party imports 
+// None
+
+// Local imports
 const models = require('../models')
 
 const setupFixtures = async (users, music) => {
-//   models.User.sync()
-//   models.Music.sync()
-
   const usersData = await createTestUsers(users)
   const musicData = await createTestMusic(music)
   return {

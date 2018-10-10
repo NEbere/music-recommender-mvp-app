@@ -151,12 +151,12 @@ describe('==== Unit Tests ====', function () {
                 errorLogger('Error adding music to user playlist', err)
               }
               expect(200)
-              const response = res.body
-              expect(response.recommendation).to.an('array')
-              expect(response.recommendation[0]).to.have.property('id')
-              expect(response.recommendation[0]).to.have.property('tags')
-              expect(response.recommendation[0]).to.have.property('createdAt')
-              expect(response.recommendation[0]).to.have.property('updatedAt')
+              const response = [].concat(...res.body.response)
+              expect(response).to.an('array')
+              expect(response[0]).to.have.property('id')
+              expect(response[0]).to.have.property('tags')
+              expect(response[0]).to.have.property('createdAt')
+              expect(response[0]).to.have.property('updatedAt')
 
               done()
             })

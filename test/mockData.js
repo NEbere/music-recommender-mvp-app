@@ -1,12 +1,12 @@
 
 const testUsers = [
   {
-    id: 23,
+    name: 'John',
     createdAt: '2018-10-09',
     updatedAt: '2018-10-09'
   },
   {
-    id: 24,
+    name: 'Doe',
     createdAt: '2018-10-09',
     updatedAt: '2018-10-09'
   }
