@@ -12,3 +12,7 @@ node_modules/
 
 # Optional npm cache directory
 .npm
+
+
+# test coverage files
+.nyc_output/

@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon ./server.js",
+    "start": "cross-env NODE_ENV=development nodemon ./server.js",
+    "lint": "standard",
+    "lint:fix": "standard --fix",
     "createDB": "node_modules/.bin/sequelize db:create",
     "migrate": "node_modules/.bin/sequelize db:migrate",
     "seedDB": "node_modules/.bin/sequelize db:seed:all",
-    "undoDBSeed": "node_modules/.bin/sequelize db:seed:undo:all"
+    "undoDBSeed": "node_modules/.bin/sequelize db:seed:undo:all",
+    "test:mocha": "cross-env NODE_ENV=test nyc mocha --timeout=20000 --exit --recursive",
+    "test:cover": "cross-env NODE_ENV=test npm run test:mocha \"./test/**/*.test.js\"",
+    "test": "npm run lint:fix && npm run test:cover"
   },
   "keywords": [],
   "author": "Happiness Nwosu",
@@ -22,8 +27,28 @@
     "sequelize-cli": "^4.1.1"
   },
   "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
     "nodemon": "^1.18.4",
+    "nyc": "^13.0.1",
+    "sequelize-mock": "^0.10.2",
+    "sinon": "^6.3.5",
+    "sqlite3": "3.1.13",
+    "standard": "^12.0.1",
     "ts-node": "^7.0.1",
     "typescript": "^3.1.1"
+  },
+  "standard": {
+    "env": [
+      "node",
+      "mocha",
+      "chai"
+    ],
+    "globals": [
+      "expect",
+      "sinon"
+    ]
   }
 }

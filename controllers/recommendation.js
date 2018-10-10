@@ -3,49 +3,47 @@ const models = require('../models')
 const sequelize = require('sequelize')
 const Op = sequelize.Op
 
-
 const getUserAndFollowersPlayList = async (userId) => {
-    return await models.User.findById(userId, {
-        include: [
-            { model: models.User, as : 'followers', include: ['playList']},
-            { model: models.Music, as : 'playList'}
-        ]
-    })
+  return models.User.findById(userId, {
+    include: [
+      { model: models.User, as: 'followers', include: ['playList'] },
+      { model: models.Music, as: 'playList' }
+    ]
+  })
 }
 
 const getPlayListTags = (playList) => {
-    const playListTags = []
-    for (let index = 0; index < playList.length; index++) {
-        playListTags.push(...playList[index].tags)
-    }
+  const playListTags = []
+  for (let index = 0; index < playList.length; index++) {
+    playListTags.push(...playList[index].tags)
+  }
 
-    return playListTags
+  return playListTags
 }
 
 const getUserRecommendations = async (ctx, next) => {
-    const userId = ctx.params.userId
-    const user = await getUserAndFollowersPlayList(userId)
-    const playLists = [].concat(...user.playList)
-    const followers = user.followers
+  const userId = ctx.params.userId
+  const user = await getUserAndFollowersPlayList(userId)
+  const playLists = [].concat(...user.playList)
+  const followers = user.followers
 
-    // Get followers playlist
-    for (let index = 0; index < followers.length; index++){
-        playLists.push(...followers[index].playList)
-    }
-    const playListTags = getPlayListTags(playLists)
-    const recommendation = await models.Music.findAll({
-        where: { tags: {
-            [Op.overlap]: playListTags 
-        }},
-        limit: 5
-    })
+  // Get followers playlist
+  for (let index = 0; index < followers.length; index++) {
+    playLists.push(...followers[index].playList)
+  }
+  const playListTags = getPlayListTags(playLists)
+  const recommendation = await models.Music.findAll({
+    where: { tags: {
+      [Op.overlap]: playListTags
+    } },
+    limit: 5
+  })
 
-    ctx.status = 200
-    ctx.body = { recommendation: recommendation }
-
+  ctx.status = 200
+  ctx.body = { recommendation }
 }
 
 module.exports = {
-    getUserAndFollowersPlayList,
-    getUserRecommendations
+  getUserAndFollowersPlayList,
+  getUserRecommendations
 }

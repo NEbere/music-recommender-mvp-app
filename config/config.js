@@ -1,6 +1,6 @@
-const Sequelize = require("sequelize");
+const Sequelize = require('sequelize')
 module.exports = {
-development : {
+  development: {
     username: process.env.DB_USERNAME || 'happiness',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'routific',
@@ -9,8 +9,10 @@ development : {
     dialect: 'postgres',
     operatorsAliases: Sequelize.Op,
     logging: false,
-},
-test: {
+    debug: true
+  },
+
+  test: {
     username: process.env.DB_USERNAME || 'happiness',
     password: process.env.DB_PASSWORD || '',
     database: process.env.DB_NAME || 'test',
@@ -18,16 +20,16 @@ test: {
     port: process.env.DB_PORT || 5432,
     dialect: 'postgres',
     operatorsAliases: Sequelize.Op,
-    logging: false,
-},
+    logging: false
+  },
 
-production: {
+  production: {
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     host: process.env.DB_HOSTNAME,
     port: process.env.DB_PORT,
     dialect: 'postgres',
-    operatorsAliases: Sequelize.Op,
+    operatorsAliases: Sequelize.Op
   }
 }
