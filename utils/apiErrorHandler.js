@@ -1,7 +1,7 @@
 /**
  * handleApiErrors: Handles API errors and returns message for different error codes
  * TODO: Cater for more error codes
- * @param { Number } errorCode 
+ * @param { Number } errorCode
  * @returns message: A response for the errorCode provided
  */
 const handleApiErrors = errorCode => {

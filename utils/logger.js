@@ -1,7 +1,7 @@
 /**
  * errorLogger: logs error to the console
- * @param { string } errorMessage 
- * @param { Error } error 
+ * @param { string } errorMessage
+ * @param { Error } error
  */
 const errorLogger = (errorMessage, error) => {
   return console.error(`${errorMessage}: ${error}`)
@@ -9,8 +9,8 @@ const errorLogger = (errorMessage, error) => {
 
 /**
  * errorLogger: logs info to the console
- * @param { string } errorMessage 
- * @param { any } info 
+ * @param { string } errorMessage
+ * @param { any } info
  */
 const infoLogger = (infoMessage, info) => {
   return console.info(`${infoMessage}: ${info}`)
